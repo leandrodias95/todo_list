@@ -37,7 +37,10 @@ class _TodoListPageState extends State<TodoListPage> {
               ElevatedButton(onPressed: () {},
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color(0xff00d7f3),
-                  padding: EdgeInsets.all(16)
+                  padding: EdgeInsets.all(16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.zero,
+                  )
 
                 ),
                 child: Icon(
