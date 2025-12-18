@@ -32,34 +32,8 @@ class _TodoListPageState extends State<TodoListPage> {
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'Adicone uma tarefa',
-                        hintText: 'Estudar Flutter'
+                        hintText: 'Estudar Flutter',
                       ),
-                    ),
-                  ),
-                  SizedBox(width: 8),
-                  ElevatedButton(onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xff00d7f3),
-                      padding: EdgeInsets.all(16),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.zero,
-                      )
-
-                    ),
-                    child: Icon(
-                     Icons.add,
-                      size: 30,
-                      color: Colors.white
-                    ),
-                  )
-                ],
-              ),
-              SizedBox(height: 16),
-              Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                        "Você possuí 0 tarefas pendentes "
                     ),
                   ),
                   SizedBox(width: 8),
@@ -72,15 +46,44 @@ class _TodoListPageState extends State<TodoListPage> {
                         borderRadius: BorderRadius.zero,
                       ),
                     ),
-                    child: Text('Limpar tudo',
-                    style: TextStyle(color: Colors.white),),
-                  )
+                    child: Icon(Icons.add, size: 30, color: Colors.white),
+                  ),
                 ],
-              )
+              ),
+              SizedBox(height: 16),
+              ListView(
+                shrinkWrap: true,
+                children: [
+                  Container(color: Colors.red, width: 50, height: 50),
+                  Container(color: Colors.yellow, width: 50, height: 50),
+                  Container(color: Colors.green, width: 50, height: 50),
+                ],
+              ),
+              SizedBox(height: 16),
+              Row(
+                children: [
+                  Expanded(child: Text("Você possuí 0 tarefas pendentes ")),
+                  SizedBox(width: 8),
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xff00d7f3),
+                      padding: EdgeInsets.all(16),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.zero,
+                      ),
+                    ),
+                    child: Text(
+                      'Limpar tudo',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
-        )
-      )
+        ),
+      ),
     );
   }
 }
