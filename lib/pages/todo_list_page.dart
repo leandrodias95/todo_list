@@ -8,11 +8,15 @@ class TodoListPage extends StatefulWidget {
 }
 
 class _TodoListPageState extends State<TodoListPage> {
-  final TextEditingController emailController = TextEditingController();
+
+  final TextEditingController todoController = TextEditingController();
+
+  List<String> todos = [];
 
   @override
   void dispose() {
-    emailController.dispose();
+
+    todoController.dispose();
     super.dispose();
   }
 
@@ -29,16 +33,23 @@ class _TodoListPageState extends State<TodoListPage> {
                 children: [
                   Expanded(
                     child: TextField(
+                      controller: todoController,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
-                        labelText: 'Adicone uma tarefa',
+                        labelText: 'Adicione uma tarefa',
                         hintText: 'Estudar Flutter',
                       ),
                     ),
                   ),
                   SizedBox(width: 8),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      String text = todoController.text;
+                      setState(() {
+                        todos.add(text);
+                      });
+                      todoController.clear();
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xff00d7f3),
                       padding: EdgeInsets.all(16),
@@ -51,13 +62,19 @@ class _TodoListPageState extends State<TodoListPage> {
                 ],
               ),
               SizedBox(height: 16),
-              ListView(
-                shrinkWrap: true,
-                children: [
-                  Container(color: Colors.red, width: 50, height: 50),
-                  Container(color: Colors.yellow, width: 50, height: 50),
-                  Container(color: Colors.green, width: 50, height: 50),
-                ],
+              Flexible(
+                child: ListView(
+                  shrinkWrap: true,
+                  children: [
+                    for(String todo in todos)
+                    ListTile(
+                      title: Text(todo),
+                      onTap: (){
+                        print("Tarefa: $todo");
+                      }
+                    )
+                  ],
+                ),
               ),
               SizedBox(height: 16),
               Row(
@@ -65,7 +82,8 @@ class _TodoListPageState extends State<TodoListPage> {
                   Expanded(child: Text("Você possuí 0 tarefas pendentes ")),
                   SizedBox(width: 8),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xff00d7f3),
                       padding: EdgeInsets.all(16),
